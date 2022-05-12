@@ -33,5 +33,10 @@ server.on("error", (error) => {
 });
 
 app.use(morgan("dev"));
+app.use(express.json());
 
-debug(thingsWeKnow);
+app.get("/", (req, res, next) => {
+  debug("Requesting things we know");
+  res.json(thingsWeKnow);
+  next();
+});
